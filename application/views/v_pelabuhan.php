@@ -35,7 +35,7 @@
         <div class="col-lg-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <button class="btn btn-success" data-toggle="modal" href="#" data-target="#ModalEntryPelabuhan"><i class="fa fa-plus"></i>Tambah Data Tujuan Kapal</button> 
+              <button class="btn btn-info" data-toggle="modal" href="#" data-target="#ModalEntryPelabuhan"><i class="fa fa-plus"></i>Tambah Data Tujuan Kapal</button> 
             </div>
             <div class="panel-body">
 			

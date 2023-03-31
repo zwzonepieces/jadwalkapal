@@ -58,8 +58,8 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 
-                  <div class="col-sm-6">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                  <div class="col-sm-6" >
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" >
                   </div>
                   <span style="opacity: 0.5">*kosongkan jika tidak ingin mengubah password</span>
                 </div>
@@ -76,7 +76,7 @@
                 <div class="form-group">
                   <div class="col-md-5"></div>
                   <div class="col-sm-3">
-                    <button type="button" id="btn_user" class="btn btn-block btn-success">Update</button>
+                    <button type="button" id="btn_user" class="btn btn-block btn-info">Update</button>
                   </div>
                 </div>
 
