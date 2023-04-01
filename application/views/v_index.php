@@ -69,7 +69,7 @@
                     <h4 align='center'><b>Jadwal Kapal</b></h4>
                   </div>
                   <div class="icon">
-                    <i class="fa fa-users fa-fw"></i>
+                    <i class="fa fa-anchor fa-fw"></i>
                   </div>
                   <a href="<?php echo site_url('daftarjadwal') ?>" class="small-box-footer">Lihat  Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
@@ -77,12 +77,12 @@
               <!-- ./col -->
               <div class="col-md-6">
                 <!-- small box -->
-                <div class="small-box bg-green">
+                <div class="small-box bg-aqua">
                   <div class="inner" style="padding-bottom: 45px">
                     <h4 align='center'><b>Login Admin</b></h4>
                   </div>
                   <div class="icon">
-                    <i class="fa fa-user"></i>
+                    <i class="fa fa-users"></i>
                   </div>
                   <a href="<?php echo site_url('login') ?>" class="small-box-footer">Lihat Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
                 </div>

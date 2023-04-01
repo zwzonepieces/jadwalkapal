@@ -26,13 +26,13 @@
           }
           .bs-callout-success {
               background-color:  #d9d9d9;
-              border-left-color: #5cb85c;
+              border-left-color: #fffff;
           }
         </style>
         <div class="row">
           <div class="form-group">
-            <div class="col-md-5">
-              <h4 style="margin-top: 30px"><strong> Selamat Datang, <?php echo ucwords($nama) ?> ! </strong></h4>
+            <div class="col-md-12" align="center">
+              <h4 style="margin: 30px 30px " ><strong> Selamat Datang, <?php echo ucwords($nama) ?> >_< </strong></h4>
             </div>
         </div>
       </div>

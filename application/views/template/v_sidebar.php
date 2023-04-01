@@ -23,14 +23,14 @@
         </li>
  -->        <li>
           <a href="<?php echo site_url('pelabuhan') ?>">
-            <i class="fa fa-plus-square"></i>
+            <i class="fa fa-location-arrow"></i>
             <span>Tujuan Kapal</span>
           </a>
         </li>
 	
         <li>
           <a href="<?php echo site_url('kapal') ?>">
-            <i class="fa fa-users"></i>
+            <i class="fa fa-anchor"></i>
             <span>Data Kapal</span>
           </a>
         </li>

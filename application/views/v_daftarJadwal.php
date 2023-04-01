@@ -38,7 +38,7 @@
       <div class="col-12">
         <hr>
         <table class="table table-sm table-striped table-bordered table-responsive-sm ">
-        <thead style="background-color: #0099FF ;">
+        <thead style="background-color: #0e6c97 ;">
           <tr>
             <th width="50px"><center>NO.</center> </th>
 						<th width="250px"><center>NAMA KAPAL</center></th>            
