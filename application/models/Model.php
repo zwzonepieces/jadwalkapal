@@ -106,7 +106,7 @@ class Model extends CI_Model {
     	} else {
          $kd = "01";
     	}
-       	return "Plbn".$kd;
+       	return "PLBN".$kd;
     }
     //kode kapal
 	public function getKodeKapal()
