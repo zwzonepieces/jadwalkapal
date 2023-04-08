@@ -46,6 +46,7 @@
 						<th width="150px"><center>KOTA TUJUAN</center></th>            
             <th width="150px"><center>TANGGAL KEBERANGKATAN</center></th>
 						<th width="150px"><center>TANGGAL KEDATANGAN</center></th>
+            <th width="50px"><center>STATUS</center></th>
           </tr>
         </thead>
         <tbody>
@@ -59,7 +60,8 @@
             <td align="center"><b><?php echo strtoupper($jad->pelabuhan_asal) ?></b></td>
 						<td align="center"><b><?php echo strtoupper($jad->pelabuhan_tujuan) ?></b></td>              
 						<td align="center"><b><?php echo date ($jad->tgl_berangkat) ?></b></td>
-						<td align="center"><b><?php echo date ($jad->tgl_datang) ?></td>		
+						<td align="center"><b><?php echo date ($jad->tgl_datang) ?></td>	
+            <td align="center"><b><?php echo strtoupper ($jad->keterangan) ?></td>	
           </tr>
         <?php } ?>
         </tbody>

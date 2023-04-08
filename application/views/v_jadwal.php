@@ -48,11 +48,12 @@
                 <thead>
                   <tr>
 										<th width="10px"><center>No.</center> </th>
-										<th width="150px"><center>Nama Kapal</center></th>
-            				<th width="100px"><center>Kota Asal</center></th>
-										<th width="100px"><center>Kota Tujuan</center></th>										            				            
-            				<th width="100px"><center>Tanggal Keberangkatan</center></th>
-										<th width="100px"><center>Tanggal Kedatangan</center></th>
+										<th width="150px"><center>NAMA KAPAL</center></th>
+            				<th width="100px"><center>KOTA ASAL</center></th>
+										<th width="100px"><center>KOTA TUJUAN</center></th>										            				            
+            				<th width="100px"><center>TGL KEBERANGKATAN</center></th>
+										<th width="100px"><center>TGL KEDATANGAN</center></th>
+                    <th width="50px"><center>STATUS</center></th>
                     <th width="50px" align="center;"> <center>Action</center> </th>
                   </tr>
                 </thead>
@@ -66,6 +67,7 @@
 											<td><?php echo strtoupper($jad->pelabuhan_tujuan) ?></td>
                       <td align="center"><?php echo date ($jad->tgl_berangkat) ?></td>
 											<td align="center"><?php echo date ($jad->tgl_datang) ?></td>
+                      <td align="center"><?php echo strtoupper ($jad->keterangan) ?></td>
                       <td align="center">
                         <button data-target="#ModalUpdateJadwal<?php echo $jad->id ?>" class="btn btn-sm btn-warning btn-circle" data-toggle="modal"><span class="glyphicon glyphicon-edit"></span> </button>
                         <button onclick="validate(this)" value="<?php echo $jad->id ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></td>
@@ -114,6 +116,15 @@
           </div>
 					<div class="form-group"><label>Tanggal Datang</label>
             <input required class="form-control required" placeholder="Input Tanggal Kedatangan" data-placement="top" data-trigger="manual" type="datetime-local" name="tgl_datang">
+          </div>
+
+          <div class="form-group">
+            <label>Keterangan</label>
+            <select class="form-control select2"  data-placeholder="Pilih Keterangan" data-placement="top" data-trigger="manual" type="text" name="keterangan" style="width: 50%;">
+              <option value="ON TIME">ON TIME</option>
+              <option value="DELAY">DELAY</option>
+              <option value="BATAL">BATAL</option>
+            </select>
           </div>
        
         <div class="modal-footer">
@@ -164,6 +175,15 @@
           </div>
 					<div class="form-group"><label>Tanggal Datang</label>
             <input required class="form-control required" placeholder="Input Tanggal Kedatangan" data-placement="top" data-trigger="manual" type="datetime-local" name="tgl_datang" value="<?php echo $jad->tgl_datang ?>">
+          </div>
+
+          <div class="form-group">
+            <label>Keterangan</label>
+            <select class="form-control select2"  data-placeholder="Pilih Keterangan" data-placement="top" data-trigger="manual" type="text" name="keterangan" style="width: 50%;">
+              <option value="ON TIME">ON TIME</option>
+              <option value="DELAY">DELAY</option>
+              <option value="BATAL">BATAL</option>
+            </select>
           </div>
 
         </div>

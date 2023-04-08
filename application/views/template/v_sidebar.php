@@ -40,6 +40,13 @@
             <span>Jadwal</span>
           </a>
         </li>
+
+        <li>
+          <a href="<?php echo site_url('laporan') ?>">
+            <i class="fa fa-line-chart"></i>
+            <span>Laporan</span>
+          </a>
+        </li>
          
         <li>
           <a href="<?php echo site_url('user') ?>">

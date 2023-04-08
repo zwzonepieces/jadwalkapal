@@ -36,12 +36,14 @@ class ControllerJadwal extends CI_Controller {
 		$tgl_berangkat = $this->input->post('tgl_berangkat');
 		$tgl_datang = $this->input->post('tgl_datang');
 		$id_pelabuhan = $this->input->post('id_pelabuhan');
+		$keterangan = $this->input->post('keterangan');
 		
 		$data = [				
 				'id_kapal' => $id_kapal, 		
 				'id_pelabuhan' => $id_pelabuhan,	
 				'tgl_berangkat' => $tgl_berangkat,
-				'tgl_datang' => $tgl_datang
+				'tgl_datang' => $tgl_datang,
+				'keterangan' => $keterangan,
 				];
 			
 			$result = $this->Model->simpan('jadwal',$data);		
@@ -64,11 +66,13 @@ class ControllerJadwal extends CI_Controller {
 		$tgl_berangkat = $this->input->post('tgl_berangkat');
 		$tgl_datang = $this->input->post('tgl_datang');
 		$id_pelabuhan = $this->input->post('id_pelabuhan');
+		$keterangan = $this->input->post('keterangan');
 		$data = [
 			'id_kapal' => $id_kapal,
 			'id_pelabuhan' => $id_pelabuhan,
 			'tgl_berangkat' => $tgl_berangkat,
-			'tgl_datang' => $tgl_datang
+			'tgl_datang' => $tgl_datang,
+			'keterangan' => $keterangan,
 			];
 		
 

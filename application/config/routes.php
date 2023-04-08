@@ -76,6 +76,9 @@ $route['jadwal/simpan'] = 'ControllerJadwal/simpan';
 $route['jadwal/ubah'] = 'ControllerJadwal/ubah';
 $route['jadwal/hapus/(:any)'] = 'ControllerJadwal/hapus/$1';
 
+//laoran
+$route['laporan'] = 'ControllerLaporan';
+
 //dashboard
 $route['dashboard'] = 'ControllerDashboard';
 
