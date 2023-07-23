@@ -82,11 +82,11 @@
                     <h4 align='center'><b>Login Admin</b></h4>
                   </div>
                   <div class="icon">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-user"></i>
                   </div>
                   <a href="<?php echo site_url('login') ?>" class="small-box-footer">Lihat Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
-              </div>
+</div>
               <!-- ./col -->
             </div>
           </div>

@@ -1,4 +1,4 @@
-  <div class="content-wrapper">
+<div class="content-wrapper">
     <section class="content-header">
       <h1>
         Data User
@@ -38,12 +38,14 @@
                     <input type="text" class="form-control" id="username" value="<?php echo $this->session->username ?>" placeholder="Username" name="username">
                   </div>
                 </div>
+                
+                
 
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Nama</label>
 
                   <div class="col-sm-6">
-                    <input name="nm_user" type="text" class="form-control" id="nama" value="<?php echo $this->session->nm_user ?>" placeholder="Nama">
+                    <input name="nama" type="text" class="form-control" id="nama" value="<?php echo $this->session->nama ?>" placeholder="Nama">
                   </div>
                 </div>
 

@@ -24,29 +24,34 @@ class ControllerUser extends CI_Controller {
 
 	public function ubah()
 	{
-		$username = $this->input->post('username');
-		$nm_user = $this->input->post('nm_user');
-		$email = $this->input->post('email');
-		$password = $this->input->post('password');
-		$repassword = $this->input->post('repassword');
 		$id = $this->input->post('id');
-
+		$nama = $this->input->post('nama');
+		$level= $this->input->post('level');
+		$email = $this->input->post('email');
+		$username = $this->input->post('username');
+        $password = Md5($this->input->post('password'));
+		$repassword = $this->input->post('repassword');
+		
 		if($password == null && $repassword == null){
 			$data = [
-				'username' => $username,
-				'nm_user' => $nm_user,
-				'email' => $email,
+				
+			'nama' => $nama,
+			'level' => $level,
+			'email' => $email,
+			'username' => $username,
 			];	
 		} else {
 			$data = [
-				'username' => $username,
-				'nm_user' => $nm_user,
-				'email' => $email,
-				'password' => md5($password)
+				
+			'nama' => $nama,
+			'level' => $level,
+			'email' => $email,
+			'username' => $username,
+            'password' => $password,
 			];
 		}
 
-		$result = $this->Model->update('id',$id,$data,'user');
+		$result = $this->Model->update('id_user',$id,$data,'user');
 
 		if ($result){
 			echo json_encode($result);

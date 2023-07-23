@@ -27,49 +27,102 @@
 <body>
 	<div class="container" style="margin-top: 40px">
 	<a>
-    <h2><center><b>JADWAL KEDATANGAN DAN KEBERANGKATAN KAPAL</b></center></h2>
-		<h4><center><b>PELABUHAN DWIKORA PONTIANAK</b></center></h4>
-    <h5><center><b><?php echo longdate_indo(date("Y-m-d")); ?></b></center></h5>
+    <h3><center><b>JADWAL KEDATANGAN DAN KEBERANGKATAN KAPAL</b></center></h3>
+		<h5><center><b>PELABUHAN DWIKORA PONTIANAK</b></center></h5>
+    <h6><center><b><?php echo longdate_indo(date("Y-m-d")); ?></b></center></h6>
 	</a>
   </div> 
   
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
+      <div class="col-6">
         <hr>
-        <table class="table table-sm table-striped table-bordered table-responsive-sm ">
+        <a>
+          <h6><center><b>KEDATANGAN</b></center></h6>
+        </a>
+        <table class="table table-sm table-striped table-bordered table-responsive-sm " style="float">
         <thead style="background-color: #0e6c97 ;">
-          <tr>
-            <th width="50px"><center>NO.</center> </th>
-						<th width="250px"><center>NAMA KAPAL</center></th>            
-            <th width="150px" ><center>KOTA ASAL</center></th>
-						<th width="150px"><center>KOTA TUJUAN</center></th>            
-            <th width="150px"><center>TANGGAL KEBERANGKATAN</center></th>
-						<th width="150px"><center>TANGGAL KEDATANGAN</center></th>
-            <th width="50px"><center>STATUS</center></th>
+          <tr align="center">
+            <th width="50px">NO. </th>
+						<th width="250px">NAMA KAPAL</th>            
+            <th width="150px" >ASAL</th>  
+            <th width="150px" >TUJUAN</th>            
+            <th width="150px">TANGGAL KEBERANGKATAN</th>
+						<th width="150px">TANGGAL KEDATANGAN</th>
           </tr>
         </thead>
         <tbody>
-        <?php $no=1; ?>
-				
-        <?php foreach($jadwal as $jad)
-				 { ?>
-          <tr >
-            <td align="center"><b><?php echo $no++."."; ?></b> </td>
-						<td><b><?php echo $jad->nm_kapal ?></td>
-            <td align="center"><b><?php echo strtoupper($jad->pelabuhan_asal) ?></b></td>
-						<td align="center"><b><?php echo strtoupper($jad->pelabuhan_tujuan) ?></b></td>              
-						<td align="center"><b><?php echo date ($jad->tgl_berangkat) ?></b></td>
-						<td align="center"><b><?php echo date ($jad->tgl_datang) ?></td>	
-            <td align="center"><b><?php echo strtoupper ($jad->keterangan) ?></td>	
-          </tr>
-        <?php } ?>
+        <?php $no=1; ?>				
+          <?php foreach($kedatangan as $jad)
+				    { ?>
+              <tr >
+                <td align="center"><b><?php echo $no++."."; ?></b> </td>
+						    <td><b><?php echo $jad->nm_kapal ?></td>
+                <td align="center">
+                  <b><?php echo strtoupper($jad->nm_pelabuhan) ?></b>
+                </td>  
+                <td align="center">
+                  <b><?php echo strtoupper($jad->nm_pelabuhan2) ?></b>
+                </td>            
+						    <td align="center">
+                  <b><?php echo date('d M Y', strtotime ($jad->tgl_berangkat)) ?></b>
+                  <p><?php echo  date ('H:i', strtotime ($jad->jam_berangkat) ) ?></p>
+                </td>
+						    <td align="center">
+                  <b><?php echo date('d M Y', strtotime ($jad->tgl_datang)) ?></b>
+                  <p><?php echo  date ('H:i', strtotime ($jad->jam_datang) ) ?></p>
+                </td>		
+              </tr>
+            <?php } ?>
         </tbody>
         </table>
-        <a href="<?php echo site_url('') ?>" class="btn btn-danger"><i></i> Kembali</a>
+        </div>
+          <div class="col-6">
+          <hr>
+          <a>
+            <h6><center><b>KEBERANGKATAN</b></center></h6>
+          </a>
+            <table class="table table-sm table-striped table-bordered table-responsive-sm ">
+            <thead style="background-color: #0e6c97 ;">
+              <tr align="center">
+                <th width="50px">NO. </th>
+						    <th width="250px">NAMA KAPAL</th>            
+                <th width="150px" >ASAL</th>
+                <th width="150px" >TUJUAN</th>             
+                <th width="150px">TANGGAL KEBERANGKATAN</th>
+						    <th width="150px">TANGGAL KEDATANGAN</th>
+              </tr>
+        </thead>
+        <tbody>
+        <?php $no=1; ?>				
+          <?php foreach($keberangkatan as $jad)
+				  { ?>
+            <tr >
+              <td align="center"><b><?php echo $no++."."; ?></b> </td>
+						  <td><b><?php echo $jad->nm_kapal ?></td>
+              <td align="center">
+                <b><?php echo strtoupper($jad->nm_pelabuhan) ?></b>
+              </td>  
+              <td align="center">
+                <b><?php echo strtoupper($jad->nm_pelabuhan2) ?></b>
+              </td>            
+						  <td align="center">
+                <b><?php echo date('d M Y', strtotime ($jad->tgl_berangkat)) ?></b>
+                <p><?php echo  date ('H:i', strtotime ($jad->jam_berangkat) ) ?></p>
+              </td>
+						  <td align="center">
+                <b><?php echo date('d M Y', strtotime ($jad->tgl_datang)) ?></b>
+                <p><?php echo  date ('H:i', strtotime ($jad->jam_datang) ) ?></p>
+              </td>		
+            </tr>
+          <?php } ?>
+        </tbody>
+        </table>
       </div>    
     </div>
+  <a href="<?php echo site_url('') ?>" class="btn btn-warning"><i></i> Kembali</a> 
   </div>
+  
 <!-- jQuery 3 -->
 <script src="<?php echo site_url('assets/AdminLTE/bower_components/jquery/dist/jquery.min.js')?>"></script>
 <!-- Bootstrap 3.3.7 -->

@@ -7,7 +7,7 @@ class Model extends CI_Model {
 		parent::__construct();
 	}
 
-	//untuk login
+	//fungsi login
 	public function auth($username,$password)
 	{
    		$query = "SELECT * FROM user WHERE UPPER(username)=".$this->db->escape(strtoupper(stripslashes(strip_tags(htmlspecialchars($username,ENT_QUOTES)))))." AND password=".$this->db->escape(stripslashes(strip_tags(htmlspecialchars($password,ENT_QUOTES))));
@@ -15,14 +15,86 @@ class Model extends CI_Model {
    		return $result->row();
 	}
 
-	//ambil semua data
+	//fungsi ambil semua data
 	public function getAll($table)
 	{
 		$result = $this->db->get($table);
 		return $result->result();
 	}
+	//fungsi melihat laporan berdasarkan tanggal pada laporan biasa
+    public function view_by_date($tgl_awal, $tgl_akhir){
+        $tgl_awal = $this->db->escape($tgl_awal);
+        $tgl_akhir = $this->db->escape($tgl_akhir);
+        $this->db->where('DATE(keberangkatan.tgl_berangkat) BETWEEN '.$tgl_awal.' AND '.$tgl_akhir); 
+		try{
+			$this->db->select('*');
+			$this->db->from('keberangkatan');
+			$this->db->join('kapal', 'keberangkatan.id_kapal = kapal.id_kapal');
+			$this->db->join('pelabuhan', 'pelabuhan.id_pelabuhan = keberangkatan.id_pelabuhan');
+			$query = $this->db->get();
+			return $query->result();
+		}catch (Exception $ex) {
+			$check = false;
+		}
+		return $this->db->get('keberangkatan')->result();
+	}
+	//sampai sini juga sama
+	public function view_date($tgl_awal, $tgl_akhir){
+        $tgl_awal = $this->db->escape($tgl_awal);
+        $tgl_akhir = $this->db->escape($tgl_akhir);
+        $this->db->where('DATE(kedatangan.tgl_berangkat) BETWEEN '.$tgl_awal.' AND '.$tgl_akhir);
+		try{
+			$this->db->select('*');
+			$this->db->from('kedatangan');
+			$this->db->join('kapal', 'kedatangan.id_kapal = kapal.id_kapal');
+			$this->db->join('pelabuhan', 'pelabuhan.id_pelabuhan = kedatangan.id_pelabuhan');
+			$query = $this->db->get();
+			return $query->result();
+		}catch (Exception $ex) {
+			$check = false;
+		}
+		return $this->db->get('kedatangan')->result();
+	}
 
-	//simpan
+	//filter data berdasarkan tgl dan nama pada laporan detail
+    public function liat_berdasarkan_tanggal($tgl_awal, $tgl_akhir, $keyword){
+        $tgl_awal = $this->db->escape($tgl_awal);
+        $tgl_akhir = $this->db->escape($tgl_akhir);
+        $this->db->where('DATE(keberangkatan.tgl_berangkat) BETWEEN '.$tgl_awal.' AND '.$tgl_akhir); 
+		$this->db->like('nm_kapal', $keyword);
+		try{
+			$this->db->select('*');
+			$this->db->from('keberangkatan');
+			$this->db->join('kapal', 'keberangkatan.id_kapal = kapal.id_kapal');
+			$this->db->join('pelabuhan', 'pelabuhan.id_pelabuhan = keberangkatan.id_pelabuhan');			
+			$this->db->join('detail_berangkat','keberangkatan.id_keberangkatan=detail_berangkat.id_keberangkatan');			
+			$query = $this->db->get();
+			return $query->result();
+		}catch (Exception $ex) {
+			$check = false;
+		}
+		return $this->db->get('keberangkatan')->result();
+	}
+	//ini juga sampai disini
+	public function liat_tanggal($tgl_awal, $tgl_akhir, $keyword){
+        $tgl_awal = $this->db->escape($tgl_awal);
+        $tgl_akhir = $this->db->escape($tgl_akhir);
+        $this->db->where('DATE(kedatangan.tgl_berangkat) BETWEEN '.$tgl_awal.' AND '.$tgl_akhir);
+		$this->db->like('nm_kapal',$keyword);
+		try{
+			$this->db->select('*');
+			$this->db->from('kedatangan');
+			$this->db->join('kapal', 'kedatangan.id_kapal = kapal.id_kapal');
+			$this->db->join('pelabuhan', 'pelabuhan.id_pelabuhan = kedatangan.id_pelabuhan');
+			$this->db->join('detail_datang','kedatangan.id_kedatangan=detail_datang.id_kedatangan');
+			$query = $this->db->get();
+			return $query->result();
+		}catch (Exception $ex) {
+			$check = false;
+		}
+		return $this->db->get('kedatangan')->result();
+	}
+	//fungsi simpan
 	public function simpan($table,$data)
 	{
 		$checkinsert = false;
@@ -34,8 +106,7 @@ class Model extends CI_Model {
 		}
 		return $checkinsert;
 	}
-
-	//update
+	//fungsi update
 	public function update($pk,$id,$data,$table)
 	{
 		$checkupdate = false;
@@ -48,8 +119,7 @@ class Model extends CI_Model {
 		}
 		return $checkupdate;
 	}
-
-	//hapus
+	//fungsi hapus
 	public function hapus($pk,$id,$table)
 	{
 		$checkdelete = false;
@@ -62,22 +132,62 @@ class Model extends CI_Model {
 		}
 		return $checkdelete;
 	}
-
-	//join
+	//join jadwal kedatangan untuk view jadwal kedatangan
 	public function joinJadwal()
 	{
 		try{
 			$this->db->select('*');
-			$this->db->from('jadwal');
-			$this->db->join('kapal', 'jadwal.id_kapal = kapal.id_kapal');
-			$this->db->join('pelabuhan', 'pelabuhan.id_pelabuhan = jadwal.id_pelabuhan');
+			$this->db->from('kedatangan');
+			$this->db->join('kapal', 'kedatangan.id_kapal = kapal.id_kapal');
+			$this->db->join('pelabuhan', 'pelabuhan.id_pelabuhan = kedatangan.id_pelabuhan');			
 			$query = $this->db->get();
 			return $query->result();
 		}catch (Exception $ex) {
 			$check = false;
 		}
 	}
-	//kode
+	
+	//join detail kedatangan
+	public function joinDetail()
+	{
+		try{
+			$this->db->select('*');
+			$this->db->from('detail_datang');
+			$this->db->join('kedatangan', 'kedatangan.id_kedatangan = detail_datang.id_kedatangan');
+			$query = $this->db->get();
+			return $query->result();
+		}catch (Exception $ex) {
+			$check = false;
+		}
+	}
+	//join jadwal keberangkatan untuk view keberangkatan
+	public function joinBerangkat()
+	{
+		try{
+			$this->db->select('*');
+			$this->db->from('keberangkatan');
+			$this->db->join('kapal', 'keberangkatan.id_kapal = kapal.id_kapal');
+			$this->db->join('pelabuhan', 'pelabuhan.id_pelabuhan = keberangkatan.id_pelabuhan');
+			$query = $this->db->get();
+			return $query->result();
+		}catch (Exception $ex) {
+			$check = false;
+		}
+	}
+	//join detail keberangkatan
+	public function joinDB()
+	{
+		try{
+			$this->db->select('*');
+			$this->db->from('detail_berangkat');			
+			$this->db->from('keberangkatan','detail_berangkat.id_keberangkatan=keberangkatan.id_keberangkatan');			
+			$query = $this->db->get();
+			return $query->result();
+		}catch (Exception $ex) {
+			$check = false;
+		}
+	}
+	//fungsi kode
 	public function kode()
     {
        	$q  = $this->db->query("select MAX(RIGHT(id,1)) as kd_max from jadwal");
@@ -123,5 +233,34 @@ class Model extends CI_Model {
     	}
        	return "KPL".$kd;
     }
-
+	// fungsi join berangkat untuk view lporan detail
+	public function JBerangkat()
+	{
+		try{
+			$this->db->select('*');
+			$this->db->from('keberangkatan');
+			$this->db->join('kapal', 'keberangkatan.id_kapal = kapal.id_kapal');
+			$this->db->join('pelabuhan', 'pelabuhan.id_pelabuhan = keberangkatan.id_pelabuhan');
+			$this->db->join('detail_berangkat', 'keberangkatan.id_keberangkatan = detail_berangkat.id_keberangkatan');
+			$query = $this->db->get();
+			return $query->result();
+		}catch (Exception $ex) {
+			$check = false;
+		}
+	}
+	// fungsi join kedatangan untuk view laporan detail
+	public function JJadwal()
+	{
+		try{
+			$this->db->select('*');
+			$this->db->from('kedatangan');
+			$this->db->join('kapal', 'kedatangan.id_kapal = kapal.id_kapal');
+			$this->db->join('pelabuhan', 'pelabuhan.id_pelabuhan = kedatangan.id_pelabuhan');
+			$this->db->join('detail_datang', 'detail_datang.id_kedatangan = kedatangan.id_kedatangan');						
+			$query = $this->db->get();
+			return $query->result();
+		}catch (Exception $ex) {
+			$check = false;
+		}
+	}
 }

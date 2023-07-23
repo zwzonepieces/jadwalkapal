@@ -6,7 +6,7 @@ class ControllerList extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Model');
+		$this->load->model('Mhide');
 		$username = $this->session->username;
 		if($username != null){
 			redirect('pelabuhan');
@@ -21,9 +21,10 @@ class ControllerList extends CI_Controller {
 	public function daftarjadwal()
 	{	
 		$data = [
-			'jadwal' => $jadwal = $this->Model->joinJadwal()
+			'kedatangan' => $kedatangan = $this->Mhide->joinJadwalhide(),
+			'keberangkatan' => $keberangkatan = $this->Mhide->joinBerangkathide()
 		];
 		$this->load->view('v_daftarJadwal',$data);
 	}
-
+	
 }

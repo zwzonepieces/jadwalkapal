@@ -16,13 +16,13 @@ class ControllerDashboard extends CI_Controller {
 	//halaman dashboard
 	public function index()
 	{	
-		$nama = $this->session->nm_user;
+		$nama = $this->session->nama;
 		$data = [
 			'nama' => $nama
 		];
 		$this->load->view('template/v_header');
 		$this->load->view('template/v_sidebar');
-		$this->load->view('v_dashboard',$data);
+		$this->load->view('admin/v_dashboard',$data);
 		$this->load->view('template/v_footer');	 
 	}
 }
